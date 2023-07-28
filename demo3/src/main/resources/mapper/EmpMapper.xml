@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.EmpMapper">
+    <!--List<Emp> getAllEmp();-->
+    <resultMap id="empRetMap" type="Emp">
+        <id property="id" column="eid"/>
+        <result property="empName" column="emp_name"/>
+    </resultMap>
+
+    <resultMap id="empAndDeptResultMap" type="Emp">
+        <id property="id" column="eid"/>
+        <result property="empName" column="emp_name"/>
+        <result property="age" column="age"/>
+        <result property="sex" column="sex"/>
+        <result property="email" column="email"/>
+        <!--<result property="dept.id" column="did"/>-->
+        <!--<result property="dept.deptName" column="dept_name"/>-->
+        <association property="dept" javaType="Dept"
+                     select="mapper.DeptMapper.getDept"
+                     column="did"
+        />
+
+    </resultMap>
+
+    <select id="getAllEmp" resultMap="empRetMap">
+        select * from emp
+    </select>
+
+    <!--Emp getEmpAndDept(Integer eid);-->
+    <select id="getEmpAndDept" resultMap="empAndDeptResultMap">
+        SELECT * from emp left JOIN dept on emp.did = dept.did where emp.eid=#{eid}
+    </select>
+
+    <select id="getEmpById" resultMap="empAndDeptResultMap">
+        SELECT * from emp where eid=#{id}
+    </select>
+</mapper>
