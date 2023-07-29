@@ -5,6 +5,23 @@
 <mapper namespace="mapper.DynamicConditionMapper">
     <!--List<Emp> getEmpByCondition(Emp emp);-->
     <select id="getEmpByCondition" resultType="Emp">
+        select * from emp
+        <where>
+            <if test="empName != null and empName != ''">
+                emp_name=#{empName}
+            </if>
+            <if test="age != null and age > 0">
+                and age=#{age}
+            </if>
+            <if test="sex != null and sex != ''">
+                and sex=#{sex}
+            </if>
+            <if test="email != null and email != ''">
+                and email=#{email}
+            </if>
+        </where>
+    </select>
+    <select id="getEmpByConditionOne" resultType="Emp">
         select * from emp where 1=1
         <if test="empName != null and empName != ''">
             and emp_name=#{empName}
