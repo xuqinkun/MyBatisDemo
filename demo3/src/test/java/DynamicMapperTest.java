@@ -9,7 +9,7 @@ public class DynamicMapperTest {
     @Test
     public void getEmpByConditionTest() throws IOException {
         DynamicConditionMapper mapper = SqlSessionUtils.getMapper(DynamicConditionMapper.class);
-        List<Emp> emps = mapper.getEmpByCondition(new Emp(null, null, 23, null, "123@qq.com"));
+        List<Emp> emps = mapper.getEmpByCondition(new Emp(null, null, 0, null, ""));
         emps.forEach(System.out::println);
     }
 }
