@@ -11,6 +11,14 @@ public class Emp {
     public Emp() {
     }
 
+    public Emp(Integer id, String empName, int age, String sex, String email) {
+        this.id = id;
+        this.empName = empName;
+        this.age = age;
+        this.sex = sex;
+        this.email = email;
+    }
+
     public Emp(Integer id, String empName, int age, String sex, String email, Dept dept) {
         this.id = id;
         this.empName = empName;
