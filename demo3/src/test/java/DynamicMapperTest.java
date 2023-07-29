@@ -18,4 +18,11 @@ public class DynamicMapperTest {
         System.out.println(mapper.batchDelete(new Integer[]{}));
 
     }
+
+    @Test
+    public void getEmpByColumnsTest() throws IOException {
+        DynamicConditionMapper mapper = SqlSessionUtils.getMapper(DynamicConditionMapper.class);
+        System.out.println(mapper.getEmpByColumns(1));
+
+    }
 }

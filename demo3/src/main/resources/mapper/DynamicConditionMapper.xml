@@ -3,6 +3,21 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mapper.DynamicConditionMapper">
+    <sql id="empColumns">eid
+    , emp_name, age</sql>
+    <resultMap id="empAndDeptResultMap" type="Emp">
+        <id property="id" column="eid"/>
+        <result property="empName" column="emp_name"/>
+        <result property="age" column="age"/>
+        <result property="sex" column="sex"/>
+        <result property="email" column="email"/>
+    </resultMap>
+    <!--List<Emp> getEmpByColumns(@Param("id") Integer id);-->
+    <select id="getEmpByColumns" resultMap="empAndDeptResultMap">
+        select
+        <include refid="empColumns"/>
+        from emp where eid=#{id}
+    </select>
     <!--int batchDelete(Integer[] ids);-->
     <delete id="batchDelete">
 
@@ -19,7 +34,7 @@
         </choose>
     </delete>
     <!--List<Emp> getEmpByCondition(Emp emp);-->
-    <select id="getEmpByCondition" resultType="Emp">
+    <select id="getEmpByCondition" resultMap="empAndDeptResultMap">
         select * from emp
         <trim prefix="where" prefixOverrides="and">
             <if test="empName != null and empName != ''">
@@ -36,7 +51,7 @@
             </if>
         </trim>
     </select>
-    <select id="getEmpByConditionTwo" resultType="Emp">
+    <select id="getEmpByConditionTwo" resultMap="empAndDeptResultMap">
         select * from emp
         <where>
             <if test="empName != null and empName != ''">
@@ -53,7 +68,7 @@
             </if>
         </where>
     </select>
-    <select id="getEmpByConditionOne" resultType="Emp">
+    <select id="getEmpByConditionOne" resultMap="empAndDeptResultMap">
         select * from emp where 1=1
         <if test="empName != null and empName != ''">
             and emp_name=#{empName}
