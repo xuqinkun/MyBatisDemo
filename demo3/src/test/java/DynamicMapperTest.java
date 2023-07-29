@@ -12,4 +12,10 @@ public class DynamicMapperTest {
         List<Emp> emps = mapper.getEmpByCondition(new Emp(null, null, 0, null, ""));
         emps.forEach(System.out::println);
     }
+    @Test
+    public void batchDeleteTest() throws IOException {
+        DynamicConditionMapper mapper = SqlSessionUtils.getMapper(DynamicConditionMapper.class);
+        System.out.println(mapper.batchDelete(new Integer[]{}));
+
+    }
 }
