@@ -1,24 +1,22 @@
 package mapper;
 
-import org.apache.ibatis.io.Resources;
-import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.Test;
 import pojo.Emp;
+import pojo.EmpExample;
+import utils.SqlSessionUtils;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.List;
 
 public class EmpTest {
     @Test
     public void testSelect() throws IOException {
-        InputStream is = Resources.getResourceAsStream("mybatis-config.xml");
-        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(is);
-        SqlSession sqlSession = sqlSessionFactory.openSession(true);
-        EmpMapper mapper = sqlSession.getMapper(EmpMapper.class);
-        List<Emp> emps = mapper.selectByExample(null);
+        EmpMapper mapper = SqlSessionUtils.getMapper(EmpMapper.class);
+//        List<Emp> emps = mapper.selectByExample(null);
+        EmpExample example = new EmpExample();
+        example.createCriteria().andAgeEqualTo(23);
+        example.or().andSexEqualTo("M");
+        List<Emp> emps = mapper.selectByExample(example);
         emps.forEach(System.out::println);
     }
 }
