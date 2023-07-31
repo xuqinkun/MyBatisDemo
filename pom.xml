@@ -10,6 +10,7 @@
         <module>Demo1</module>
         <module>demo2</module>
         <module>demo3</module>
+        <module>MyBatis_mbg</module>
     </modules>
     <name>MyBatisDemo</name>
     <description>MyBatisDemo</description>
