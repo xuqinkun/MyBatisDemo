@@ -36,12 +36,11 @@ public class MyBatisTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         UserMapper mapper = sqlSession.getMapper(UserMapper.class);
         User user = new User();
-        user.setUsername("Jerry");
         user.setPassword("123");
         user.setAge(22);
         user.setSex('M');
         user.setEmail("333@163.com");
-//        mapper.insertUser(user);
+        mapper.insertUser(user);
 //        System.out.println(id);
     }
 }

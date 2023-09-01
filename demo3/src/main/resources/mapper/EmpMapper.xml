@@ -36,4 +36,8 @@
     <select id="getEmpById" resultMap="empAndDeptResultMap">
         SELECT * from emp where eid=#{id}
     </select>
+
+    <insert id="insert">
+        insert into emp(emp_name,age,email) values(#{empName, jdbcType=VARCHAR}, #{age, jdbcType=INTEGER},#{email, jdbcType=VARCHAR})
+    </insert>
 </mapper>

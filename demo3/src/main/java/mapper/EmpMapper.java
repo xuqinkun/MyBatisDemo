@@ -10,4 +10,6 @@ public interface EmpMapper {
     Emp getEmpAndDept(Integer eid);
 
     Emp getEmpById(Integer id);
+
+    void insert(Emp emp);
 }

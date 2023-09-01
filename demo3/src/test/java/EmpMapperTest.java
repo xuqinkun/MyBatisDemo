@@ -25,4 +25,12 @@ public class EmpMapperTest {
         EmpMapper empMapper = SqlSessionUtils.getMapper(EmpMapper.class);
         System.out.println(empMapper.getEmpById(1).getId());
     }
+
+    @Test
+    public void testInsert() throws IOException {
+        EmpMapper empMapper = SqlSessionUtils.getMapper(EmpMapper.class);
+        Emp emp = new Emp();
+        emp.setEmail("aaa");
+        empMapper.insert(emp);
+    }
 }

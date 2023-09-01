@@ -20,7 +20,7 @@
 
     <select id="insertUser" parameterType="User" >
         insert into user(username, password, age, sex, email)
-        values(#{username}, #{password}, #{age}, #{sex}, #{email})
+        values(#{username, jdbcType=VARCHAR}, #{password}, #{age}, #{sex}, #{email})
     </select>
 
 
